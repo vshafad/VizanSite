@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Vizan Technologies - Build Smarter with Software + BI</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#8b5cf6'
+          },
+          borderRadius: {
+            none: '0px',
+            sm: '4px',
+            DEFAULT: '8px',
+            md: '12px',
+            lg: '16px',
+            xl: '20px',
+            '2xl': '24px',
+            '3xl': '32px',
+            full: '9999px',
+            button: '8px'
+          }
+        }
+      }
+    }
+  </script>
+   <style>
+    /* Mobile menu styles */
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    
+    .menu-overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out;
+    }
+    
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Responsive text sizes */
+    @media (max-width: 640px) {
+      .responsive-text {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+      }
+      
+      .responsive-subtext {
+        font-size: 1.125rem !important;
+      }
+      
+      .service-card {
+        padding: 1.5rem !important;
+      }
+      
+      .hero-button {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 1rem !important;
+        width: 100%;
+      }
+    }
+
+    /* Prevent horizontal scroll */
+    body {
+      overflow-x: hidden;
+    }
+
+    /* Smooth animations */
+    .service-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .floating-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
+<link rel="icon" type="image/png" href="assets/logo/vznlogomicro_favicon-removebg_50x50.png">
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/logo/vznlogomicro_favicon-removebg_50x50.png">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-white">
+<!-- Navigation -->
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center">
+        <img src="assets/logo/vizanLogo_1-removebg-preview.png" alt="Logo" width="100" height="50" class="me-2 align-middle">
+      </div>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#home" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+        <a href="#services" class="text-gray-700 hover:text-primary transition-colors">Services</a>
+        <a href="about.html" class="text-gray-700 hover:text-primary transition-colors">About</a>
+        <a href="contact.html" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors">
+        <i class="ri-menu-line text-xl"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+<div id="menu-overlay" class="menu-overlay fixed inset-0 bg-black/50 z-40 md:hidden"></div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-64 bg-white shadow-xl z-50 md:hidden">
+  <div class="flex justify-between items-center p-4 border-b">
+    <img src="assets/logo/vizanLogo_1-removebg-preview.png" alt="Logo" width="80" height="40">
+    <button id="close-menu" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100">
+      <i class="ri-close-line text-xl"></i>
+    </button>
+  </div>
+  
+  <div class="p-4 space-y-4">
+    <a href="#home" class="block text-gray-700 hover:text-primary hover:bg-gray-50 p-3 rounded-lg transition-colors">Home</a>
+    <a href="#services" class="block text-gray-700 hover:text-primary hover:bg-gray-50 p-3 rounded-lg transition-colors">Services</a>
+    <a href="about.html" class="block text-gray-700 hover:text-primary hover:bg-gray-50 p-3 rounded-lg transition-colors">About</a>
+    <a href="contact.html" class="block text-gray-700 hover:text-primary hover:bg-gray-50 p-3 rounded-lg transition-colors">Contact</a>
+  </div>
+</div>
+<!-- Hero Section -->
+<section id="home" class="relative min-h-screen flex items-center overflow-hidden" style="background-image: url('assets/img/hero_bg.jpg'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-purple-900/70"></div>
+<div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="text-white">
+<h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+Transforming Businesses Through
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Smart IT Solutions</span>
+</h1>
+<p class="text-xl mb-8 text-gray-200 leading-relaxed">
+Empowering enterprises with cutting-edge software solutions, advanced data analytics, comprehensive training programs, and professional web services to drive digital transformation and business growth.
+</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary hover:bg-blue-600 text-white px-8 py-4 !rounded-button font-semibold text-lg transition-all whitespace-nowrap">
+Get Started Today
+</button>
+<button id="view-work-btn" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 !rounded-button font-semibold text-lg transition-all whitespace-nowrap">
+View Our Work
+</button>
+</div>
+</div>
+<div class="hidden lg:block">
+<div class="floating-animation">
+<img src="assets/img/hero_floating.jpg" alt="Technology Solutions" class="w-full h-auto rounded-2xl shadow-2xl">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Grid Section -->
+<section id="services" class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Our Core Services</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+Comprehensive IT solutions designed to accelerate your business growth and digital transformation journey
+</p>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="service-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl">
+<div class="w-20 h-20 rounded-2xl overflow-hidden mb-6">
+<img src="assets/img/software.jpg" alt="Software Solutions" class="w-full h-full object-cover object-top">
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Software Solutions</h3>
+<p class="text-gray-600 mb-6 leading-relaxed">
+Custom software development including E-commerce platforms, POS systems, School ERP, LMS, CRM, HRMS, and tailored solutions for small enterprises.
+</p>
+<a href="#software-solutions" class="text-primary hover:text-blue-600 font-semibold flex items-center gap-2 transition-colors whitespace-nowrap">
+Learn More <i class="ri-arrow-right-line"></i>
+</a>
+</div>
+<div class="service-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl">
+<div class="w-20 h-20 rounded-2xl overflow-hidden mb-6">
+<img src="assets/img/data_analytic.jpg" alt="Data Analytics" class="w-full h-full object-cover object-top">
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Data Analytics</h3>
+<p class="text-gray-600 mb-6 leading-relaxed">
+End-to-end business intelligence solutions using advanced tools like Tableau, Power BI, Apache Superset, and custom analytics libraries.
+</p>
+<a href="#data-analytics" class="text-primary hover:text-blue-600 font-semibold flex items-center gap-2 transition-colors whitespace-nowrap">
+Learn More <i class="ri-arrow-right-line"></i>
+</a>
+</div>
+<div class="service-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl">
+<div class="w-20 h-20 rounded-2xl overflow-hidden mb-6">
+<img src="assets/img/bi_training.jpg" alt="BI Consulting & Training" class="w-full h-full object-cover object-top">
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">BI Consulting & Training</h3>
+<p class="text-gray-600 mb-6 leading-relaxed">
+Professional training and consulting services to help technical graduates and professionals excel in BI and Data Analytics industry.
+</p>
+<a href="#consulting-training" class="text-primary hover:text-blue-600 font-semibold flex items-center gap-2 transition-colors whitespace-nowrap">
+Learn More <i class="ri-arrow-right-line"></i>
+</a>
+</div>
+<div class="service-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl">
+<div class="w-20 h-20 rounded-2xl overflow-hidden mb-6">
+<img src="assets/img/webservices.jpg" alt="Website Services" class="w-full h-full object-cover object-top">
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Website Services</h3>
+<p class="text-gray-600 mb-6 leading-relaxed">
+Static and dynamic website solutions for small, medium, and large enterprises to enhance branding and showcase business services effectively.
+</p>
+<a href="#website-services" class="text-primary hover:text-blue-600 font-semibold flex items-center gap-2 transition-colors whitespace-nowrap">
+Learn More <i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Software Solutions Detailed Block -->
+<section id="software-solutions" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">AI-Powered Software Solutions</h2>
+<p class="text-xl text-gray-600 max-w-4xl mx-auto">
+Revolutionize your business operations with our intelligent software solutions that leverage cutting-edge AI technologies for enhanced performance, automation, and user experience.
+</p>
+</div>
+<div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+<div>
+<div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+<i class="ri-robot-line text-lg"></i>
+AI-Enhanced Solutions
+</div>
+<h3 class="text-3xl font-bold text-gray-900 mb-6">Intelligent Business Applications</h3>
+<p class="text-lg text-gray-600 mb-8">
+Our software solutions are embedded with advanced AI capabilities including machine learning algorithms, natural language processing, predictive analytics, and automated decision-making systems that transform how businesses operate and grow.
+</p>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+<i class="ri-shopping-cart-line text-white text-lg"></i>
+</div>
+<div>
+<h4 class="font-bold text-gray-900 mb-3">AI-Driven E-commerce Platforms</h4>
+<p class="text-gray-600 mb-2">Intelligent online stores with AI-powered product recommendations, dynamic pricing, fraud detection, and personalized customer experiences.</p>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Recommendation Engine</span>
+<span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Smart Chatbots</span>
+<span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Predictive Inventory</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+<i class="ri-school-line text-white text-lg"></i>
+</div>
+<div>
+<h4 class="font-bold text-gray-900 mb-3">Smart Educational ERP & LMS</h4>
+<p class="text-gray-600 mb-2">Intelligent learning management with AI tutors, automated grading, performance prediction, and personalized learning paths for students.</p>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm">AI Tutoring</span>
+<span class="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm">Auto Assessment</span>
+<span class="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm">Learning Analytics</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+<i class="ri-team-line text-white text-lg"></i>
+</div>
+<div>
+<h4 class="font-bold text-gray-900 mb-3">Intelligent CRM & HRMS</h4>
+<p class="text-gray-600 mb-2">AI-enhanced customer relationship and human resource management with sentiment analysis, automated workflows, and predictive insights.</p>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">Sentiment Analysis</span>
+<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">Smart Recruitment</span>
+<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">Performance Prediction</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<img src="assets/img/Ai.jpg" alt="AI Software Solutions" class="w-full h-auto rounded-2xl shadow-2xl">
+<div class="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-20 animate-pulse"></div>
+<div class="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-20 animate-pulse"></div>
+</div>
+</div>
+<!-- AI Features Highlight -->
+<div class="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 rounded-3xl p-12 mb-20">
+<h3 class="text-2xl font-bold text-gray-900 text-center mb-12">Advanced AI Capabilities Integrated</h3>
+<div class="grid md:grid-cols-4 gap-8">
+<div class="text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+<i class="ri-brain-line text-2xl text-white"></i>
+</div>
+<h4 class="font-bold text-gray-900 mb-2">Machine Learning</h4>
+<p class="text-sm text-gray-600">Predictive algorithms for business insights</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+<i class="ri-chat-3-line text-2xl text-white"></i>
+</div>
+<h4 class="font-bold text-gray-900 mb-2">Natural Language</h4>
+<p class="text-sm text-gray-600">Intelligent chatbots and voice interfaces</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+<i class="ri-eye-line text-2xl text-white"></i>
+</div>
+<h4 class="font-bold text-gray-900 mb-2">Computer Vision</h4>
+<p class="text-sm text-gray-600">Image recognition and document processing</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+<i class="ri-line-chart-line text-2xl text-white"></i>
+</div>
+<h4 class="font-bold text-gray-900 mb-2">Predictive Analytics</h4>
+<p class="text-sm text-gray-600">Data-driven forecasting and optimization</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Portfolio Showcase Section -->
+<section id="portfolio-showcase" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Our Portfolio</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+Discover how we've transformed businesses across industries with our innovative AI-powered software solutions
+</p>
+</div>
+<!-- Portfolio Filter Navigation -->
+<div class="flex justify-center mb-8 sm:mb-12">
+  <div class="bg-white rounded-2xl sm:rounded-full p-3 sm:p-2 shadow-lg w-full sm:w-auto">
+    <div class="flex flex-wrap justify-center gap-2 sm:gap-2 sm:flex-nowrap sm:space-x-2">
+      <button class="portfolio-filter-btn active px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap" data-filter="all">All Projects</button>
+      <button class="portfolio-filter-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap" data-filter="ecommerce">E-commerce</button>
+      <button class="portfolio-filter-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap" data-filter="education">Education</button>
+      <button class="portfolio-filter-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap" data-filter="crm">CRM/HRMS</button>
+      <button class="portfolio-filter-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap" data-filter="pos">POS Systems</button>
+    </div>
+  </div>
+</div>
+<!-- Portfolio Grid -->
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+<!-- E-commerce Project -->
+<div class="portfolio-item bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden" data-category="ecommerce">
+<div class="relative">
+<img src="assets/img/smartshop.jpg" alt="SmartShop AI Platform" class="w-full h-48 object-cover object-top">
+<div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+AI-Powered
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">SmartShop AI Platform</h3>
+<p class="text-gray-600 text-sm mb-4">E-commerce solution with ML-driven recommendations, increasing sales by 40%</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs">React</span>
+<span class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs">AI/ML</span>
+<span class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs">Python</span>
+</div>
+<button class="text-primary hover:text-blue-600 font-semibold text-sm flex items-center gap-1 whitespace-nowrap" 
+        data-modal-target="casestudy-modal" data-modal-toggle="casestudy-modal">
+    View Case Study <i class="ri-arrow-right-line"></i>
+</button>
+</div>
+</div>
+<!-- Education Project -->
+<div class="portfolio-item bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden" data-category="education">
+<div class="relative">
+<img src="assets/img/edu.jpg" alt="EduSmart Learning Platform" class="w-full h-48 object-cover object-top">
+<div class="absolute top-4 left-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+AI Tutoring
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">EduSmart Learning Platform</h3>
+<p class="text-gray-600 text-sm mb-4">Intelligent LMS with personalized learning paths for 10,000+ students</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-purple-50 text-purple-700 px-2 py-1 rounded text-xs">Vue.js</span>
+<span class="bg-purple-50 text-purple-700 px-2 py-1 rounded text-xs">NLP</span>
+<span class="bg-purple-50 text-purple-700 px-2 py-1 rounded text-xs">Node.js</span>
+</div>
+<button class="text-primary hover:text-blue-600 font-semibold text-sm flex items-center gap-1 whitespace-nowrap" 
+        data-modal-target="casestudy-modal" data-modal-toggle="casestudy-modal">
+    View Case Study <i class="ri-arrow-right-line"></i>
+</button>
+</div>
+</div>
+<!-- CRM Project -->
+<div class="portfolio-item bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden" data-category="crm">
+<div class="relative">
+<img src="assets/img/smartcrm.jpg" alt="IntelliCRM Suite" class="w-full h-48 object-cover object-top">
+<div class="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+Smart Analytics
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">IntelliCRM Suite</h3>
+<p class="text-gray-600 text-sm mb-4">AI-enhanced CRM improving customer satisfaction by 35%</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-green-50 text-green-700 px-2 py-1 rounded text-xs">Angular</span>
+<span class="bg-green-50 text-green-700 px-2 py-1 rounded text-xs">TensorFlow</span>
+<span class="bg-green-50 text-green-700 px-2 py-1 rounded text-xs">Django</span>
+</div>
+<button class="text-primary hover:text-blue-600 font-semibold text-sm flex items-center gap-1 whitespace-nowrap" 
+        data-modal-target="casestudy-modal" data-modal-toggle="casestudy-modal">
+    View Case Study <i class="ri-arrow-right-line"></i>
+</button>
+</div>
+</div>
+<!-- POS Project -->
+<div class="portfolio-item bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden" data-category="pos">
+<div class="relative">
+<img src="assets/img/smartpos.jpg" alt="SmartPOS Pro" class="w-full h-48 object-cover object-top">
+<div class="absolute top-4 left-4 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+Predictive Inventory
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">SmartPOS Pro</h3>
+<p class="text-gray-600 text-sm mb-4">Intelligent POS system with predictive inventory and fraud detection</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-orange-50 text-orange-700 px-2 py-1 rounded text-xs">Flutter</span>
+<span class="bg-orange-50 text-orange-700 px-2 py-1 rounded text-xs">ML Kit</span>
+<span class="bg-orange-50 text-orange-700 px-2 py-1 rounded text-xs">Firebase</span>
+</div>
+<button class="text-primary hover:text-blue-600 font-semibold text-sm flex items-center gap-1 whitespace-nowrap" 
+        data-modal-target="casestudy-modal" data-modal-toggle="casestudy-modal">
+    View Case Study <i class="ri-arrow-right-line"></i>
+</button>
+</div>
+</div>
+<!-- Additional Projects -->
+<div class="portfolio-item bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden" data-category="education">
+<div class="relative">
+<img src="assets/img/schoolerp.jpg" alt="SchoolMaster ERP" class="w-full h-48 object-cover object-top">
+<div class="absolute top-4 left-4 bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+Complete ERP
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">SchoolMaster ERP</h3>
+<p class="text-gray-600 text-sm mb-4">Comprehensive school management with AI-powered insights</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-indigo-50 text-indigo-700 px-2 py-1 rounded text-xs">React</span>
+<span class="bg-indigo-50 text-indigo-700 px-2 py-1 rounded text-xs">PostgreSQL</span>
+<span class="bg-indigo-50 text-indigo-700 px-2 py-1 rounded text-xs">Express</span>
+</div>
+<button class="text-primary hover:text-blue-600 font-semibold text-sm flex items-center gap-1 whitespace-nowrap" 
+        data-modal-target="casestudy-modal" data-modal-toggle="casestudy-modal">
+    View Case Study <i class="ri-arrow-right-line"></i>
+</button>
+</div>
+</div>
+<div class="portfolio-item bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden" data-category="ecommerce">
+<div class="relative">
+<img src="assets/img/fashion.jpg" alt="FashionTrend AI" class="w-full h-48 object-cover object-top">
+<div class="absolute top-4 left-4 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+Style AI
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">FashionTrend AI</h3>
+<p class="text-gray-600 text-sm mb-4">Fashion e-commerce with AI styling and virtual try-on features</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-pink-50 text-pink-700 px-2 py-1 rounded text-xs">Next.js</span>
+<span class="bg-pink-50 text-pink-700 px-2 py-1 rounded text-xs">Computer Vision</span>
+<span class="bg-pink-50 text-pink-700 px-2 py-1 rounded text-xs">Stripe</span>
+</div>
+<button class="text-primary hover:text-blue-600 font-semibold text-sm flex items-center gap-1 whitespace-nowrap" 
+        data-modal-target="casestudy-modal" data-modal-toggle="casestudy-modal">
+    View Case Study <i class="ri-arrow-right-line"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- View All Projects Button -->
+<div class="text-center mt-12">
+<button class="bg-primary hover:bg-blue-600 text-white px-8 py-4 !rounded-button font-semibold text-lg transition-all whitespace-nowrap">
+Explore Complete Portfolio
+</button>
+</div>
+</div>
+</section>
+<!-- Case Study Modal -->
+<!-- Perfectly Centered Case Study Modal -->
+<div id="casestudy-modal" tabindex="-1" aria-hidden="true" 
+     class="hidden fixed inset-0 z-50 flex h-screen items-center justify-center p-4">
+    <!-- Modal backdrop -->
+    <div class="absolute inset-0 bg-gray-900/50 backdrop-blur-sm" 
+         data-modal-hide="casestudy-modal"></div>
+    <!-- Modal content -->
+    <div class="relative w-full max-w-md max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 transform transition-all duration-300 scale-100 opacity-100">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Case Study</h3>
+                <button type="button" class="text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full p-2 transition-all duration-200" 
+                        data-modal-hide="casestudy-modal">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h4 class="text-xl font-semibold text-gray-900 mb-2">Will be available soon</h4>
+            <!--    <p class="text-gray-600 mb-6 leading-relaxed">This detailed case study is under development and will be available shortly with full project insights, metrics, and technical breakdown.</p>
+                <p class="text-sm text-gray-500 font-medium">Thank you for your interest in my work!</p>
+             --></div>
+            <!-- Modal footer -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-100">
+                <button data-modal-hide="casestudy-modal" 
+                        class="flex-1 bg-gradient-to-r from-gray-800 to-gray-900 text-white font-semibold py-3 px-6 rounded-xl hover:from-gray-900 hover:to-black transition-all duration-200 shadow-lg hover:shadow-xl text-sm">
+                    Close
+                </button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Data Analytics Showcase -->
+<section id="data-analytics" class="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Comprehensive Business Intelligence & Data Analytics</h2>
+<p class="text-xl text-gray-600 max-w-4xl mx-auto">
+Transform your organization's data into strategic advantages with our end-to-end BI solutions. We offer both enterprise-grade licensed tools and powerful open-source alternatives to meet every business need and budget.
+</p>
+</div>
+<!-- Core Analytics Features -->
+<div class="grid lg:grid-cols-3 gap-8 mb-16">
+<div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+<div class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<i class="ri-line-chart-line text-3xl text-blue-600"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Real-time Analytics</h3>
+<p class="text-gray-600">Live dashboards with instant data processing enabling immediate business insights and rapid decision-making across all organizational levels.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+<div class="w-20 h-20 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<i class="ri-database-2-line text-3xl text-purple-600"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Data Integration</h3>
+<p class="text-gray-600">Seamless connectivity across multiple data sources, cloud platforms, and legacy systems for unified business intelligence.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+<div class="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<i class="ri-pie-chart-line text-3xl text-green-600"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Advanced Reporting</h3>
+<p class="text-gray-600">Sophisticated reporting with interactive visualizations, automated insights delivery, and customizable executive dashboards.</p>
+</div>
+</div>
+<!-- Enterprise vs Open Source Solutions -->
+<div class="grid lg:grid-cols-2 gap-12 mb-16">
+<!-- Enterprise Solutions -->
+<div class="bg-gradient-to-br from-blue-900 to-purple-900 rounded-3xl p-8 text-white relative overflow-hidden">
+<div class="absolute top-4 right-4 bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-bold">
+Premium
+</div>
+<div class="relative z-10">
+<div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+<i class="ri-vip-crown-line text-2xl text-yellow-400"></i>
+</div>
+<h3 class="text-2xl font-bold mb-4">Enterprise BI Solutions</h3>
+<p class="text-blue-100 mb-6">
+For organizations ready to invest in premium analytics capabilities with enterprise-grade features, comprehensive support, and advanced functionality.
+</p>
+<div class="space-y-4 mb-8">
+<div class="flex items-start gap-3">
+<i class="ri-check-line text-green-400 text-lg mt-1 flex-shrink-0"></i>
+<div>
+<h4 class="font-semibold text-white mb-1">Tableau Professional</h4>
+<p class="text-sm text-blue-100">Industry-leading data visualization with advanced analytics, AI-powered insights, and enterprise governance features</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<i class="ri-check-line text-green-400 text-lg mt-1 flex-shrink-0"></i>
+<div>
+<h4 class="font-semibold text-white mb-1">Microsoft Power BI Premium</h4>
+<p class="text-sm text-blue-100">Comprehensive business analytics with seamless Office 365 integration, advanced AI capabilities, and enterprise security</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<i class="ri-check-line text-green-400 text-lg mt-1 flex-shrink-0"></i>
+<div>
+<h4 class="font-semibold text-white mb-1">Enterprise Support & Training</h4>
+<p class="text-sm text-blue-100">Dedicated technical support, comprehensive training programs, and ongoing consultation services</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<i class="ri-check-line text-green-400 text-lg mt-1 flex-shrink-0"></i>
+<div>
+<h4 class="font-semibold text-white mb-1">Advanced Security & Compliance</h4>
+<p class="text-sm text-blue-100">Enterprise-grade security, data governance, compliance reporting, and role-based access controls</p>
+</div>
+</div>
+</div>
+<div class="bg-white/10 rounded-2xl p-4 mb-6">
+<h4 class="font-bold text-white mb-3">Perfect For:</h4>
+<div class="flex flex-wrap gap-2">
+<span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm">Fortune 500 Companies</span>
+<span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm">Large Enterprises</span>
+<span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm">Multi-National Corps</span>
+</div>
+</div>
+<button class="bg-white text-blue-900 px-6 py-3 !rounded-button font-semibold hover:bg-blue-50 transition-all w-full whitespace-nowrap">
+Explore Enterprise Solutions
+</button>
+</div>
+</div>
+<!-- Open Source Solutions -->
+<div class="bg-gradient-to-br from-green-600 to-teal-700 rounded-3xl p-8 text-white relative overflow-hidden">
+<div class="absolute top-4 right-4 bg-green-400 text-green-900 px-3 py-1 rounded-full text-sm font-bold">
+Cost-Effective
+</div>
+<div class="relative z-10">
+<div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+<i class="ri-open-source-line text-2xl text-green-300"></i>
+</div>
+<h3 class="text-2xl font-bold mb-4">Open Source BI Solutions</h3>
+<p class="text-green-100 mb-6">
+Perfect for forward-thinking businesses seeking powerful analytics capabilities without the financial burden of expensive licensing fees. Achieve enterprise-level insights while maximizing your ROI and maintaining complete control over your data infrastructure.
+</p>
+<div class="space-y-4 mb-8">
+<div class="flex items-start gap-3">
+<i class="ri-check-line text-green-300 text-lg mt-1 flex-shrink-0"></i>
+<div>
+<h4 class="font-semibold text-white mb-2">Apache Superset - Professional Edition</h4>
+<p class="text-sm text-green-100 mb-2">Industry-leading open-source platform with enterprise-grade capabilities, offering rich data visualizations, interactive dashboards, and SQL-based exploration tools</p>
+<div class="text-xs text-green-200 space-y-1">
+<div>• 40+ native visualization types and custom chart plugins</div>
+<div>• Advanced SQL Lab with query optimization and caching</div>
+<div>• Role-based security with row-level access controls</div>
+<div>• Multi-database connectivity (MySQL, PostgreSQL, BigQuery, Snowflake)</div>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<i class="ri-check-line text-green-300 text-lg mt-1 flex-shrink-0"></i>
+<div>
+<h4 class="font-semibold text-white mb-2">Zero Licensing Investment</h4>
+<p class="text-sm text-green-100 mb-2">Eliminate recurring per-user fees and deployment restrictions while scaling unlimited users, dashboards, and data connections</p>
+<div class="text-xs text-green-200 space-y-1">
+<div>• No per-user or per-server licensing costs</div>
+<div>• Unlimited dashboard creation and sharing</div>
+<div>• Scalable architecture without vendor lock-in</div>
+<div>• 90% cost savings compared to enterprise alternatives</div>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<i class="ri-check-line text-green-300 text-lg mt-1 flex-shrink-0"></i>
+<div>
+<h4 class="font-semibold text-white mb-2">Custom Development & Extensions</h4>
+<p class="text-sm text-green-100 mb-2">Tailored features and integrations built specifically for your business requirements and existing technology stack</p>
+<div class="text-xs text-green-200 space-y-1">
+<div>• Custom visualization components and plugins</div>
+<div>• API integrations with your existing systems</div>
+<div>• Brand customization and white-label deployment</div>
+<div>• Automated reporting and alert systems</div>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<i class="ri-check-line text-green-300 text-lg mt-1 flex-shrink-0"></i>
+<div>
+<h4 class="font-semibold text-white mb-2">Vizan's Professional Implementation</h4>
+<p class="text-sm text-green-100 mb-2">Expert deployment, configuration, and ongoing optimization ensuring you achieve maximum value from day one</p>
+<div class="text-xs text-green-200 space-y-1">
+<div>• Professional installation and security hardening</div>
+<div>• Custom dashboard development and user training</div>
+<div>• Performance optimization and monitoring setup</div>
+<div>• 24/7 technical support and maintenance packages</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white/10 rounded-2xl p-4 mb-6">
+<h4 class="font-bold text-white mb-3">Perfect For:</h4>
+<div class="flex flex-wrap gap-2">
+<span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm">Growing Businesses</span>
+<span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm">Budget-Conscious Organizations</span>
+<span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm">Startups & SMEs</span>
+<span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm">Custom Solutions</span>
+</div>
+</div>
+<button class="bg-white text-green-700 px-6 py-3 !rounded-button font-semibold hover:bg-green-50 transition-all w-full whitespace-nowrap">
+Discover Open Source Benefits
+</button>
+</div>
+</div>
+</div>
+<!-- Detailed Benefits & How Vizan Helps -->
+<div class="bg-white rounded-3xl p-8 shadow-xl mb-16">
+<h3 class="text-2xl font-bold text-gray-900 text-center mb-8">How Vizan Technologies Maximizes Your BI Investment</h3>
+<div class="grid lg:grid-cols-2 gap-12 mb-12">
+<!-- Enterprise Tools Value Proposition -->
+<div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+<i class="ri-vip-crown-line text-xl text-white"></i>
+</div>
+<h4 class="text-xl font-bold text-gray-900">Enterprise Tools Success Strategy</h4>
+</div>
+<p class="text-gray-700 mb-4">
+For organizations investing in premium licenses like Tableau and Power BI, Vizan ensures maximum ROI through expert implementation and ongoing optimization.
+</p>
+<div class="space-y-3 text-sm text-gray-600">
+<div class="flex items-start gap-2">
+<i class="ri-check-line text-blue-600 mt-1 flex-shrink-0"></i>
+<span><strong>Advanced Feature Utilization:</strong> Leverage premium capabilities like AI insights, advanced calculations, and enterprise governance features</span>
+</div>
+<div class="flex items-start gap-2">
+<i class="ri-check-line text-blue-600 mt-1 flex-shrink-0"></i>
+<span><strong>License Optimization:</strong> Strategic user allocation and dashboard distribution to maximize your licensing investment</span>
+</div>
+<div class="flex items-start gap-2">
+<i class="ri-check-line text-blue-600 mt-1 flex-shrink-0"></i>
+<span><strong>Enterprise Integration:</strong> Seamless connectivity with your existing enterprise systems and security protocols</span>
+</div>
+<div class="flex items-start gap-2">
+<i class="ri-check-line text-blue-600 mt-1 flex-shrink-0"></i>
+<span><strong>Executive Reporting:</strong> C-level dashboards with advanced analytics and predictive insights</span>
+</div>
+</div>
+</div>
+<!-- Open Source Tools Value Proposition -->
+<div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center">
+<i class="ri-open-source-line text-xl text-white"></i>
+</div>
+<h4 class="text-xl font-bold text-gray-900">Open Source Excellence Approach</h4>
+</div>
+<p class="text-gray-700 mb-4">
+Smart businesses choose open-source solutions to achieve enterprise-level capabilities while maintaining budget flexibility and technological freedom.
+</p>
+<div class="space-y-3 text-sm text-gray-600">
+<div class="flex items-start gap-2">
+<i class="ri-check-line text-green-600 mt-1 flex-shrink-0"></i>
+<span><strong>Cost-Effective Scaling:</strong> Grow your analytics capabilities without per-user licensing constraints or budget limitations</span>
+</div>
+<div class="flex items-start gap-2">
+<i class="ri-check-line text-green-600 mt-1 flex-shrink-0"></i>
+<span><strong>Custom Development:</strong> Tailored features and extensions built specifically for your unique business requirements</span>
+</div>
+<div class="flex items-start gap-2">
+<i class="ri-check-line text-green-600 mt-1 flex-shrink-0"></i>
+<span><strong>Community Innovation:</strong> Benefit from continuous improvements and new features driven by global developer community</span>
+</div>
+<div class="flex items-start gap-2">
+<i class="ri-check-line text-green-600 mt-1 flex-shrink-0"></i>
+<span><strong>Professional Support:</strong> Enterprise-grade support and maintenance without vendor dependency</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="text-center">
+<div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+<i class="ri-rocket-2-line text-2xl text-blue-600"></i>
+</div>
+<h4 class="font-bold text-gray-900 mb-3">Rapid Deployment</h4>
+<p class="text-gray-600 text-sm">Get your BI solution operational in 2-4 weeks with our proven implementation methodology and pre-configured templates</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+<i class="ri-user-settings-line text-2xl text-purple-600"></i>
+</div>
+<h4 class="font-bold text-gray-900 mb-3">Expert Configuration</h4>
+<p class="text-gray-600 text-sm">Industry-specific setup optimized for your sector, whether healthcare, retail, manufacturing, or technology</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+<i class="ri-shield-check-line text-2xl text-green-600"></i>
+</div>
+<h4 class="font-bold text-gray-900 mb-3">Ongoing Excellence</h4>
+<p class="text-gray-600 text-sm">Continuous optimization, performance monitoring, and feature enhancements to ensure sustained business value</p>
+</div>
+</div>
+</div>
+<!-- Comprehensive Tools Showcase -->
+<div class="bg-white rounded-3xl p-8 shadow-xl">
+<div class="text-center mb-8">
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Complete BI Technology Ecosystem</h3>
+<p class="text-gray-600">Comprehensive solutions tailored to your business needs and budget requirements</p>
+</div>
+<!-- Tool Categories -->
+<div class="grid lg:grid-cols-2 gap-8 mb-12">
+<!-- Enterprise Tools Detail -->
+<div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6">
+<h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+<i class="ri-vip-crown-line text-blue-600"></i>
+Enterprise-Grade Solutions
+</h4>
+<div class="space-y-4">
+<div class="bg-white rounded-xl p-4 shadow-sm">
+<div class="flex items-center gap-3 mb-2">
+<i class="ri-bar-chart-fill text-2xl text-blue-600"></i>
+<div>
+<span class="font-semibold text-gray-800 block">Tableau Professional</span>
+<span class="text-sm text-blue-600">Industry Leader in Data Visualization</span>
+</div>
+</div>
+<ul class="text-xs text-gray-600 space-y-1 ml-10">
+<li>• Advanced analytics with statistical functions and forecasting</li>
+<li>• AI-powered insights with Explain Data feature</li>
+<li>• Enterprise governance with Tableau Server/Cloud</li>
+<li>• 500+ native connectors and real-time data streaming</li>
+</ul>
+</div>
+<div class="bg-white rounded-xl p-4 shadow-sm">
+<div class="flex items-center gap-3 mb-2">
+<i class="ri-line-chart-fill text-2xl text-orange-600"></i>
+<div>
+<span class="font-semibold text-gray-800 block">Microsoft Power BI</span>
+<span class="text-sm text-orange-600">Seamless Microsoft Integration</span>
+</div>
+</div>
+<ul class="text-xs text-gray-600 space-y-1 ml-10">
+<li>• Deep Office 365 and Azure ecosystem integration</li>
+<li>• Natural language queries with Q&A feature</li>
+<li>• Advanced AI capabilities with Azure Cognitive Services</li>
+<li>• Cost-effective enterprise licensing options</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Open Source Tools Detail -->
+<div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6">
+<h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+<i class="ri-open-source-line text-green-600"></i>
+Open Source Excellence
+</h4>
+<div class="space-y-4">
+<div class="bg-white rounded-xl p-4 shadow-sm">
+<div class="flex items-center gap-3 mb-2">
+<i class="ri-pie-chart-fill text-2xl text-green-600"></i>
+<div>
+<span class="font-semibold text-gray-800 block">Apache Superset</span>
+<span class="text-sm text-green-600">Modern Open Source Platform</span>
+</div>
+</div>
+<ul class="text-xs text-gray-600 space-y-1 ml-10">
+<li>• Rich set of data visualizations and modern web-based interface</li>
+<li>• Intuitive workflow for exploring and visualizing datasets</li>
+<li>• Extensible security model and SQL Lab for data preparation</li>
+<li>• Cloud-native architecture with Kubernetes support</li>
+</ul>
+</div>
+<div class="bg-white rounded-xl p-4 shadow-sm">
+<div class="flex items-center gap-3 mb-2">
+<i class="ri-code-fill text-2xl text-purple-600"></i>
+<div>
+<span class="font-semibold text-gray-800 block">Custom Analytics Suite</span>
+<span class="text-sm text-purple-600">Tailored Business Solutions</span>
+</div>
+</div>
+<ul class="text-xs text-gray-600 space-y-1 ml-10">
+<li>• Python/R based analytics with Jupyter notebooks integration</li>
+<li>• React/Vue.js dashboards with custom visualization libraries</li>
+<li>• REST APIs for seamless application integration</li>
+<li>• Machine learning pipelines with predictive analytics</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Success Metrics -->
+<div class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-6 mb-8">
+  <h4 class="text-lg font-bold text-gray-900 mb-4 text-center">Vizan's BI Implementation Success Metrics</h4>
+  <div class="grid md:grid-cols-4 gap-6 text-center">
+    <div>
+      <div class="text-2xl font-bold text-blue-600 mb-1">85%</div>
+      <div class="text-sm text-gray-600">Faster Decision Making</div>
+    </div>
+    <div>
+      <div class="text-2xl font-bold text-green-600 mb-1">70%</div>
+      <div class="text-sm text-gray-600">Cost Reduction (Open Source)</div>
+    </div>
+    <div>
+      <div class="text-2xl font-bold text-purple-600 mb-1">95%</div>
+      <div class="text-sm text-gray-600">User Adoption Rate</div>
+    </div>
+    <div>
+      <div class="text-2xl font-bold text-orange-600 mb-1">60%</div>
+      <div class="text-sm text-gray-600">ROI Improvement</div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+</div>
+</section>
+<!-- Consulting & Training Hub -->
+<section id="consulting-training" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<img src="assets/img/training.jpg" alt="Training Session" class="w-full h-auto rounded-2xl shadow-xl">
+</div>
+<div>
+<h2 class="text-4xl font-bold text-gray-900 mb-6">Expert Training & Consulting</h2>
+<p class="text-lg text-gray-600 mb-8">
+Accelerate your career in Business Intelligence and Data Analytics with our comprehensive training programs and professional consulting services.
+</p>
+<div class="grid grid-cols-2 gap-6 mb-8">
+<div class="text-center">
+<div class="text-3xl font-bold text-primary mb-2">500+</div>
+<div class="text-gray-600">Professionals Trained</div>
+</div>
+<div class="text-center">
+<div class="text-3xl font-bold text-primary mb-2">95%</div>
+<div class="text-gray-600">Job Placement Rate</div>
+</div>
+<div class="text-center">
+<div class="text-3xl font-bold text-primary mb-2">50+</div>
+<div class="text-gray-600">Corporate Clients</div>
+</div>
+<div class="text-center">
+<div class="text-3xl font-bold text-primary mb-2">4.9/5</div>
+<div class="text-gray-600">Training Rating</div>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-3">
+<i class="ri-check-line text-green-600 text-xl"></i>
+<span class="text-gray-700">Industry-certified training programs</span>
+</div>
+<div class="flex items-center gap-3">
+<i class="ri-check-line text-green-600 text-xl"></i>
+<span class="text-gray-700">Hands-on project experience</span>
+</div>
+<div class="flex items-center gap-3">
+<i class="ri-check-line text-green-600 text-xl"></i>
+<span class="text-gray-700">Career placement assistance</span>
+</div>
+<div class="flex items-center gap-3">
+<i class="ri-check-line text-green-600 text-xl"></i>
+<span class="text-gray-700">Ongoing mentorship support</span>
+</div>
+</div>
+<button class="bg-primary hover:bg-blue-600 text-white px-8 py-4 !rounded-button font-semibold transition-all whitespace-nowrap">
+Enroll Now
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Website Services Portfolio -->
+<section id="website-services" class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Professional Website Services</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+From static landing pages to dynamic web applications, we create stunning websites that drive business growth and enhance your digital presence
+</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8 mb-16">
+<div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+<img src="assets/img/smallbusiness.jpg" alt="Small Business Website" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-3">Small Business Websites</h3>
+<p class="text-gray-600 mb-4">Professional websites for startups and small businesses with essential features and modern design.</p>
+<div class="flex items-center justify-between">
+
+<button class="text-primary hover:text-blue-600 font-semibold whitespace-nowrap" 
+        data-modal-target="examples-modal" data-modal-toggle="examples-modal">
+    View Examples
+</button>
+
+</div>
+</div>
+</div>
+<div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+<img src="assets/img/enterprise.jpg" alt="Enterprise Website" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-3">Enterprise Solutions</h3>
+<p class="text-gray-600 mb-4">Scalable web applications with advanced features, integrations, and enterprise-grade security.</p>
+<div class="flex items-center justify-between">
+
+<button class="text-primary hover:text-blue-600 font-semibold whitespace-nowrap" 
+        data-modal-target="examples-modal" data-modal-toggle="examples-modal">
+    View Examples
+</button>
+
+</div>
+</div>
+</div>
+<div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+<img src="assets/img/ecomerce.jpg" alt="E-commerce Website" class="w-full h-48 object-cover">
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-3">E-commerce Platforms</h3>
+<p class="text-gray-600 mb-4">Complete online stores with payment processing, inventory management, and customer analytics.</p>
+<div class="flex items-center justify-between">
+
+<button class="text-primary hover:text-blue-600 font-semibold whitespace-nowrap" 
+        data-modal-target="examples-modal" data-modal-toggle="examples-modal">
+    View Examples
+</button>
+
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-3xl p-8 shadow-xl">
+<h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Trusted by Leading Companies</h3>
+<div class="flex flex-wrap justify-center items-center gap-8 opacity-60">
+<div class="flex items-center gap-2">
+<i class="ri-building-line text-2xl"></i>
+<span class="font-semibold">TechCorp Solutions</span>
+</div>
+<div class="flex items-center gap-2">
+<i class="ri-store-line text-2xl"></i>
+<span class="font-semibold">Global Retail Inc</span>
+</div>
+<div class="flex items-center gap-2">
+<i class="ri-hospital-line text-2xl"></i>
+<span class="font-semibold">Healthcare Plus</span>
+</div>
+<div class="flex items-center gap-2">
+<i class="ri-graduation-cap-line text-2xl"></i>
+<span class="font-semibold">EduTech Academy</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Service Examples Coming Soon Modal -->
+<div id="examples-modal" tabindex="-1" aria-hidden="true" 
+     class="hidden fixed inset-0 z-50 flex h-screen items-center justify-center p-4">
+    <!-- Modal backdrop -->
+    <div class="absolute inset-0 bg-gray-900/50 backdrop-blur-sm" 
+         data-modal-hide="examples-modal"></div>
+    <!-- Modal content -->
+    <div class="relative w-full max-w-md max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 transform transition-all duration-300">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Live Examples</h3>
+                <button type="button" class="text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full p-2 transition-all duration-200" 
+                        data-modal-hide="examples-modal">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Coming Soon Content -->
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h4 class="text-xl font-semibold text-gray-900 mb-3">Examples Coming Soon</h4>
+            <!--  <p class="text-gray-600 mb-6 leading-relaxed">Live project demos and detailed examples are being prepared and will be available shortly.</p>-->  
+                <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+                    <p class="text-sm text-blue-800 font-medium mb-2">Want to see examples now?</p>
+                    <p class="text-xs text-blue-700">Contact me directly for personalized project walkthroughs and live demos.</p>
+                </div>
+            </div>
+
+            <!-- Contact CTA Footer -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-100">
+                <button data-modal-hide="examples-modal" 
+                        class="flex-1 bg-gradient-to-r from-gray-800 to-gray-900 text-white font-semibold py-3 px-6 rounded-xl hover:from-gray-900 hover:to-black transition-all duration-200 shadow-lg hover:shadow-xl text-sm">
+                    Close
+                </button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Why Choose Vizan Section -->
+<section class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Why Choose Vizan Technologies?</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+We combine technical expertise with business acumen to deliver solutions that drive real results for your organization
+</p>
+</div>
+<div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-16">
+<div class="text-center">
+<div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<i class="ri-rocket-line text-3xl text-white"></i>
+</div>
+<div class="counter text-primary mb-2" data-target="150">0</div>
+<div class="text-gray-600 font-semibold">Projects Completed</div>
+</div>
+<div class="text-center">
+<div class="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<i class="ri-team-line text-3xl text-white"></i>
+</div>
+<div class="counter text-primary mb-2" data-target="98">0</div>
+<div class="text-gray-600 font-semibold">Client Satisfaction %</div>
+</div>
+<div class="text-center">
+<div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<i class="ri-time-line text-3xl text-white"></i>
+</div>
+<div class="counter text-primary mb-2" data-target="24">0</div>
+<div class="text-gray-600 font-semibold">Hours Support</div>
+</div>
+<div class="text-center">
+<div class="w-20 h-20 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<i class="ri-award-line text-3xl text-white"></i>
+</div>
+<div class="counter text-primary mb-2" data-target="5">0</div>
+<div class="text-gray-600 font-semibold">Years Experience</div>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-2xl">
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Innovation-Driven Approach</h3>
+<p class="text-gray-600 mb-6">
+We leverage cutting-edge technologies and industry best practices to deliver solutions that keep you ahead of the competition.
+</p>
+<div class="flex items-center gap-3 text-primary font-semibold">
+<i class="ri-lightbulb-line text-xl"></i>
+<span>Learn About Our Process</span>
+</div>
+</div>
+<div class="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-2xl">
+<h3 class="text-2xl font-bold text-gray-900 mb-4">Dedicated Support Team</h3>
+<p class="text-gray-600 mb-6">
+Our experienced team provides ongoing support and maintenance to ensure your systems run smoothly and efficiently.
+</p>
+<div class="flex items-center gap-3 text-primary font-semibold">
+<i class="ri-customer-service-line text-xl"></i>
+<span>Contact Support</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact & CTA Footer -->
+<footer class="bg-gray-900 text-white">
+<div class="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+<div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-16">
+<div>
+<div class="flex items-center mb-6">
+    <img src="assets/logo/vizanLogo_1-removebg-preview.png" alt="Logo" width="100" height="50" class="me-2 align-middle">
+</div>
+<p class="text-gray-300 mb-6 leading-relaxed">
+Transforming businesses through innovative IT solutions, data analytics, and comprehensive training programs.
+</p>
+<div class="flex space-x-4">
+<div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-linkedin-fill text-lg"></i>
+</div>
+<div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-twitter-fill text-lg"></i>
+</div>
+<div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-facebook-fill text-lg"></i>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-6">Services</h4>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Software Development</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Data Analytics</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">BI Consulting</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Website Services</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Training Programs</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-6">Company</h4>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Our Team</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Careers</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Case Studies</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-6">Get In Touch</h4>
+<div class="space-y-4 mb-6">
+<div class="flex items-center gap-3">
+<i class="ri-mail-line text-primary"></i>
+<span class="text-gray-300">info@vizantech.com</span>
+</div>
+<div class="flex items-center gap-3">
+<i class="ri-phone-line text-primary"></i>
+<span class="text-gray-300">+91 7788001161</span>
+</div>
+<div class="flex items-center gap-3">
+<i class="ri-map-pin-line text-primary"></i>
+<span class="text-gray-300">NO 1087, AYYAPPANKAVU, VANDITHAVALAM, PALAKKAD, Vandithavalam, Chittur,Palakkad, Kerala, 
+India-678534</span>
+</div>
+</div>
+<button class="bg-primary hover:bg-blue-600 text-white px-6 py-3 !rounded-button font-semibold transition-all w-full whitespace-nowrap">
+Start Your Project
+</button>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-gray-400">© 2025 Vizan Technologies. All rights reserved.</p>
+<div class="flex space-x-6">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script src="js/counter.js"></script>
+  <script src="js/portfolio-filter.js"></script>
+  <script src="js/main.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/smooth-scroll.js"></script>
+  <script src="/js/view-work-scroll.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+<script>
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const closeMenuButton = document.getElementById('close-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuOverlay = document.getElementById('menu-overlay');
+  
+  function openMobileMenu() {
+    mobileMenu.classList.add('active');
+    menuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  
+  mobileMenuButton.addEventListener('click', openMobileMenu);
+  closeMenuButton.addEventListener('click', closeMobileMenu);
+  menuOverlay.addEventListener('click', closeMobileMenu);
+  
+  // Close menu when clicking on menu links
+  const menuLinks = mobileMenu.querySelectorAll('a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+  
+  // View Work button scroll
+  const viewWorkBtn = document.getElementById('view-work-btn');
+  if (viewWorkBtn) {
+    viewWorkBtn.addEventListener('click', function() {
+      const portfolioSection = document.getElementById('portfolio-showcase');
+      if (portfolioSection) {
+        portfolioSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+  
+  // Counter Animation
+  const counters = document.querySelectorAll('.counter');
+  const speed = 200;
+  
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+        
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCount, 10);
+        } else {
+          counter.innerText = target.toLocaleString();
+        }
+      };
+      updateCount();
+    });
+  };
+  
+  // Trigger counters when in view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  const counterSection = document.querySelector('.counter');
+  if (counterSection) {
+    observer.observe(counterSection.closest('section'));
+  }
+  
+  // Portfolio Filter
+  const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      // Add active class to clicked button
+      button.classList.add('active');
+      
+      const filterValue = button.getAttribute('data-filter');
+      
+      portfolioItems.forEach(item => {
+        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+          item.style.display = 'block';
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+          }, 10);
+        } else {
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.8)';
+          setTimeout(() => {
+            item.style.display = 'none';
+          }, 300);
+        }
+      });
+    });
+  });
+  
+  // Modal functionality
+  const modalToggleButtons = document.querySelectorAll('[data-modal-toggle]');
+  const modals = document.querySelectorAll('[id$="modal"]');
+  
+  modalToggleButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetModalId = button.getAttribute('data-modal-toggle');
+      const targetModal = document.getElementById(targetModalId);
+      targetModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  
+  modals.forEach(modal => {
+    const hideButtons = modal.querySelectorAll('[data-modal-hide]');
+    const backdrop = modal.querySelector('.bg-gray-900\\/50');
+    
+    const closeModal = () => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+    
+    hideButtons.forEach(btn => btn.addEventListener('click', closeModal));
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+  });
+  
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      modals.forEach(modal => {
+        if (!modal.classList.contains('hidden')) {
+          modal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  });
+  
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href !== '#' && href.startsWith('#')) {
+        e.preventDefault();
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
+
