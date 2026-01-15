@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Vizan Technologies | Get In Touch</title>
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#8b5cf6'
+          },
+          borderRadius: {
+            button: '8px'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="icon" type="image/png" href="assets/logo/vznlogomicro_favicon-removebg_50x50.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .contact-card {
+      transition: all 0.3s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Mobile menu styles */
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 280px;
+      background: white;
+      z-index: 60;
+      box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+      overflow-y: auto;
+    }
+    
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    
+    .menu-overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 50;
+      backdrop-filter: blur(2px);
+    }
+    
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Prevent horizontal scroll on mobile */
+    body {
+      overflow-x: hidden;
+    }
+    
+    /* Mobile overflow fix */
+    @media (max-width: 640px) {
+      .container-overflow {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- Navigation -->
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center">
+        <a href="index.html">
+          <img src="assets/logo/vizanLogo_1-removebg-preview.png" alt="Vizan Technologies Logo" width="120" height="60" class="me-2 align-middle">
+        </a>
+      </div>
+      <div class="hidden md:flex space-x-8">
+        <a href="index.html" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+        <a href="index.html#services" class="text-gray-700 hover:text-primary transition-colors">Services</a>
+        <a href="about.html" class="text-gray-700 hover:text-primary transition-colors">About</a>
+        <a href="contact.html" class="text-primary font-semibold">Contact</a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors">
+        <i class="ri-menu-line text-xl"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="menu-overlay" class="menu-overlay md:hidden"></div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu md:hidden">
+  <div class="flex justify-between items-center p-4 border-b">
+    <img src="assets/logo/vizanLogo_1-removebg-preview.png" alt="Logo" width="80" height="40">
+    <button id="close-menu" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100">
+      <i class="ri-close-line text-xl"></i>
+    </button>
+  </div>
+  
+  <div class="p-4 space-y-4">
+    <a href="index.html" class="block text-gray-700 hover:text-primary hover:bg-gray-50 p-3 rounded-lg transition-colors">Home</a>
+    <a href="index.html#services" class="block text-gray-700 hover:text-primary hover:bg-gray-50 p-3 rounded-lg transition-colors">Services</a>
+    <a href="about.html" class="block text-gray-700 hover:text-primary hover:bg-gray-50 p-3 rounded-lg transition-colors">About</a>
+    <a href="contact.html" class="block text-primary font-semibold hover:bg-gray-50 p-3 rounded-lg transition-colors">Contact</a>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section class="pt-16 pb-12 bg-gradient-to-br from-blue-50 to-purple-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+      Get In <span class="gradient-text">Touch</span>
+    </h1>
+    <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+      Have a project in mind? Let's discuss how we can help transform your business with our solutions.
+    </p>
+  </div>
+</section>
+
+<!-- Contact Options -->
+<section class="py-12 sm:py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 container-overflow">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+      <!-- Email -->
+      <div class="contact-card bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-lg">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
+          <i class="ri-mail-line text-xl sm:text-2xl text-white"></i>
+        </div>
+        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">Email Us</h3>
+        <p class="text-gray-600 mb-6 text-sm sm:text-base">
+          Send us detailed project requirements for a comprehensive proposal.
+        </p>
+        <a href="mailto:info@vizantech.com" class="text-primary font-semibold hover:text-blue-600 flex items-center gap-2 text-sm sm:text-base">
+          info@vizantech.com <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <!-- Phone -->
+      <div class="contact-card bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-lg">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
+          <i class="ri-phone-line text-xl sm:text-2xl text-white"></i>
+        </div>
+        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">Call Us</h3>
+        <p class="text-gray-600 mb-6 text-sm sm:text-base">
+          Speak directly with our technical team for immediate consultation.
+        </p>
+        <a href="tel:+917788001161" class="text-primary font-semibold hover:text-blue-600 flex items-center gap-2 text-sm sm:text-base">
+          +91 7788001161 <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="contact-card bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-lg">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+          <i class="ri-whatsapp-line text-xl sm:text-2xl text-white"></i>
+        </div>
+        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">WhatsApp</h3>
+        <p class="text-gray-600 mb-6 text-sm sm:text-base">
+          Quick chat for instant responses and project discussions.
+        </p>
+        <a href="https://wa.me/917788001161" class="text-primary font-semibold hover:text-blue-600 flex items-center gap-2 text-sm sm:text-base">
+          Start Chat <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+   
+  </div>
+</section>
+
+<!-- Office Info -->
+<section class="py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 container-overflow">
+    <div class="text-center mb-8 sm:mb-12">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Our Office</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
+        Visit us at our headquarters or reach out through any of our contact channels
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 sm:gap-12">
+      <!-- Address -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-lg">
+        <div class="flex items-start gap-4 mb-6 sm:mb-8">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+            <i class="ri-map-pin-line text-lg sm:text-xl text-white"></i>
+          </div>
+          <div>
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Headquarters</h3>
+            <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+              NO 1087, AYYAPPANKAVU, VANDITHAVALAM,<br>
+              Chittur, Palakkad, Kerala,<br>
+              India - 678534
+            </p>
+          </div>
+        </div>
+
+        <!-- Business Hours -->
+        <div class="border-t border-gray-100 pt-6 sm:pt-8">
+          <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-4">Business Hours</h4>
+          <div class="space-y-3">
+            <div class="flex justify-between text-sm sm:text-base">
+              <span class="text-gray-600">Monday - Friday</span>
+              <span class="font-medium text-gray-900">9:00 AM - 7:00 PM</span>
+            </div>
+            <div class="flex justify-between text-sm sm:text-base">
+              <span class="text-gray-600">Saturday</span>
+              <span class="font-medium text-gray-900">10:00 AM - 4:00 PM</span>
+            </div>
+            <div class="flex justify-between text-sm sm:text-base">
+              <span class="text-gray-600">Sunday</span>
+              <span class="font-medium text-gray-900">Closed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Contact Info -->
+      <div class="space-y-6">
+        <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-lg">
+          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-6">Quick Contact</h3>
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                <i class="ri-mail-line text-blue-600 text-lg sm:text-xl"></i>
+              </div>
+              <div>
+                <div class="text-xs sm:text-sm text-gray-500">Email</div>
+                <div class="font-medium text-gray-900 text-sm sm:text-base">info@vizantech.com</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                <i class="ri-phone-line text-green-600 text-lg sm:text-xl"></i>
+              </div>
+              <div>
+                <div class="text-xs sm:text-sm text-gray-500">Phone</div>
+                <div class="font-medium text-gray-900 text-sm sm:text-base">+91 7788001161</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
+                <i class="ri-whatsapp-line text-emerald-600 text-lg sm:text-xl"></i>
+              </div>
+              <div>
+                <div class="text-xs sm:text-sm text-gray-500">WhatsApp</div>
+                <div class="font-medium text-gray-900 text-sm sm:text-base">+91 7788001161</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Response Time -->
+        <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-2xl p-6 sm:p-8">
+          <h3 class="text-lg sm:text-xl font-bold mb-4">Response Time</h3>
+          <p class="mb-6 text-sm sm:text-base">
+            We typically respond within 2-4 hours during business hours. For urgent matters, please use WhatsApp or call us directly.
+          </p>
+          <div class="flex items-center gap-2 text-sm sm:text-base">
+            <i class="ri-time-line text-lg sm:text-xl"></i>
+            <span class="font-semibold">Average Response Time: 2-4 hours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 sm:mb-16">
+      <div>
+        <div class="flex items-center mb-6">
+          <img src="assets/logo/vizanLogo_1-removebg-preview.png" alt="Logo" width="100" height="50" class="me-2 align-middle">
+        </div>
+        <p class="text-gray-300 mb-6 leading-relaxed text-sm sm:text-base">
+          Transforming businesses through innovative IT solutions, data analytics, and comprehensive training programs.
+        </p>
+        <div class="flex space-x-4">
+          <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-linkedin-fill text-lg"></i>
+          </div>
+          <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-twitter-fill text-lg"></i>
+          </div>
+          <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-facebook-fill text-lg"></i>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-lg sm:text-xl font-bold mb-6">Services</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Software Development</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Data Analytics</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">BI Consulting</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Website Services</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Training Programs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg sm:text-xl font-bold mb-6">Company</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">About Us</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Our Team</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Careers</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Case Studies</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg sm:text-xl font-bold mb-6">Get In Touch</h4>
+        <div class="space-y-4 mb-6">
+          <div class="flex items-center gap-3">
+            <i class="ri-mail-line text-primary"></i>
+            <span class="text-gray-300 text-sm sm:text-base">info@vizantech.com</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="ri-phone-line text-primary"></i>
+            <span class="text-gray-300 text-sm sm:text-base">+91 7788001161</span>
+          </div>
+        </div>
+        <button class="bg-primary hover:bg-blue-600 text-white px-6 py-3 !rounded-button font-semibold transition-all w-full whitespace-nowrap text-sm sm:text-base">
+          Start Your Project
+        </button>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-gray-400 text-sm sm:text-base">© 2025 Vizan Technologies. All rights reserved.</p>
+        <div class="flex space-x-4 sm:space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile Menu Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const closeMenuButton = document.getElementById('close-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuOverlay = document.getElementById('menu-overlay');
+  
+  function openMobileMenu() {
+    mobileMenu.classList.add('active');
+    menuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  
+  mobileMenuButton.addEventListener('click', openMobileMenu);
+  closeMenuButton.addEventListener('click', closeMobileMenu);
+  menuOverlay.addEventListener('click', closeMobileMenu);
+  
+  // Close menu when clicking on menu links
+  const menuLinks = mobileMenu.querySelectorAll('a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+});
+</script>
+
+</body>
+</html>

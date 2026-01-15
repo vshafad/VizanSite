@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Vizan Technologies</title>
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#8b5cf6'
+          },
+          borderRadius: {
+            button: '8px'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="icon" type="image/png" href="assets/logo/vznlogomicro_favicon-removebg_50x50.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Mobile menu styles */
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 280px;
+      background: white;
+      z-index: 60;
+      box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+      overflow-y: auto;
+    }
+    
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    
+    .menu-overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 50;
+      backdrop-filter: blur(2px);
+    }
+    
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Prevent horizontal scroll on mobile */
+    body {
+      overflow-x: hidden;
+    }
+    
+    /* Mobile overflow fix */
+    @media (max-width: 640px) {
+      .container-overflow {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- Navigation -->
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center">
+        <a href="index.html">
+          <img src="assets/logo/vizanLogo_1-removebg-preview.png" alt="Vizan Technologies Logo" width="120" height="60" class="me-2 align-middle">
+        </a>
+      </div>
+      <div class="hidden md:flex space-x-8">
+        <a href="index.html" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+        <a href="index.html#services" class="text-gray-700 hover:text-primary transition-colors">Services</a>
+        <a href="about.html" class="text-primary font-semibold">About</a>
+        <a href="contact.html" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors">
+        <i class="ri-menu-line text-xl"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="menu-overlay" class="menu-overlay md:hidden"></div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu md:hidden">
+  <div class="flex justify-between items-center p-4 border-b">
+    <img src="assets/logo/vizanLogo_1-removebg-preview.png" alt="Logo" width="80" height="40">
+    <button id="close-menu" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100">
+      <i class="ri-close-line text-xl"></i>
+    </button>
+  </div>
+  
+  <div class="p-4 space-y-4">
+    <a href="index.html" class="block text-gray-700 hover:text-primary hover:bg-gray-50 p-3 rounded-lg transition-colors">Home</a>
+    <a href="index.html#services" class="block text-gray-700 hover:text-primary hover:bg-gray-50 p-3 rounded-lg transition-colors">Services</a>
+    <a href="about.html" class="block text-primary font-semibold hover:bg-gray-50 p-3 rounded-lg transition-colors">About</a>
+    <a href="contact.html" class="block text-gray-700 hover:text-primary hover:bg-gray-50 p-3 rounded-lg transition-colors">Contact</a>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section class="pt-16 pb-12 bg-gradient-to-br from-blue-50 to-purple-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+      About <span class="gradient-text">Vizan Technologies</span>
+    </h1>
+    <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+      We transform businesses through innovative software solutions and data analytics
+    </p>
+  </div>
+</section>
+
+<!-- Company Overview -->
+<section class="py-12 sm:py-16 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 container-overflow">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 sm:mb-16">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Who We Are</h2>
+        <p class="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base">
+          Vizan Technologies is a technology company specializing in AI-powered software solutions, business intelligence, and data analytics. We've grown to become a trusted partner for businesses seeking digital transformation.
+        </p>
+        <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+          Our team of experts combines technical expertise with business understanding to deliver solutions that drive real results for our clients.
+        </p>
+      </div>
+      <div>
+        <img src="assets/img/ourteam.jpg" alt="Our Team" class="w-full h-auto rounded-2xl shadow-lg">
+      </div>
+    </div>
+
+    <!-- Mission & Vision -->
+    <div class="grid md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
+      <div class="bg-blue-50 rounded-2xl p-6 sm:p-8">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+          <i class="ri-target-line text-xl sm:text-2xl text-white"></i>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+        <p class="text-gray-700 text-sm sm:text-base">
+          To empower businesses with intelligent, accessible technology solutions that drive growth, foster innovation, and create lasting value.
+        </p>
+      </div>
+      
+      <div class="bg-purple-50 rounded-2xl p-6 sm:p-8">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
+          <i class="ri-eye-line text-xl sm:text-2xl text-white"></i>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+        <p class="text-gray-700 text-sm sm:text-base">
+          To be the leading partner for businesses seeking intelligent digital transformation, making advanced technology accessible to all.
+        </p>
+      </div>
+    </div>
+
+    <!-- Our Values -->
+    <div class="mb-12 sm:mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">Our Values</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div class="bg-white border border-gray-100 rounded-2xl p-4 sm:p-6 shadow-sm">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+            <i class="ri-lightbulb-line text-blue-600 text-lg sm:text-xl"></i>
+          </div>
+          <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Innovation</h4>
+          <p class="text-gray-600 text-sm sm:text-base">We constantly explore new technologies and approaches to solve business challenges.</p>
+        </div>
+        
+        <div class="bg-white border border-gray-100 rounded-2xl p-4 sm:p-6 shadow-sm">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+            <i class="ri-user-heart-line text-green-600 text-lg sm:text-xl"></i>
+          </div>
+          <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Client Success</h4>
+          <p class="text-gray-600 text-sm sm:text-base">Your success is our priority. We partner with you to achieve your business goals.</p>
+        </div>
+        
+        <div class="bg-white border border-gray-100 rounded-2xl p-4 sm:p-6 shadow-sm">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+            <i class="ri-shield-check-line text-purple-600 text-lg sm:text-xl"></i>
+          </div>
+          <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Integrity</h4>
+          <p class="text-gray-600 text-sm sm:text-base">We maintain transparency, honesty, and ethical standards in all our work.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Our Services Summary -->
+    <div class="mb-12 sm:mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">What We Do</h2>
+      <div class="grid md:grid-cols-2 gap-4 sm:gap-6">
+        <div class="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-gray-50 rounded-2xl">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            <i class="ri-code-line text-blue-600 text-lg sm:text-xl"></i>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">Software Solutions</h4>
+            <p class="text-gray-600 text-sm sm:text-base">Custom AI-powered software including ERP, CRM, POS, and e-commerce platforms.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-gray-50 rounded-2xl">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            <i class="ri-line-chart-line text-purple-600 text-lg sm:text-xl"></i>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">Data Analytics</h4>
+            <p class="text-gray-600 text-sm sm:text-base">Business intelligence solutions using Tableau, Power BI, and open-source tools.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-gray-50 rounded-2xl">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            <i class="ri-graduation-cap-line text-green-600 text-lg sm:text-xl"></i>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">Training & Consulting</h4>
+            <p class="text-gray-600 text-sm sm:text-base">Professional BI training programs and consulting services.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-gray-50 rounded-2xl">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            <i class="ri-globe-line text-orange-600 text-lg sm:text-xl"></i>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">Website Services</h4>
+            <p class="text-gray-600 text-sm sm:text-base">Professional websites and web applications for businesses.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="mb-12 sm:mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">Why Choose Vizan</h2>
+      <div class="space-y-4 sm:space-y-6">
+        <div class="flex items-start gap-3 sm:gap-4">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+            <i class="ri-check-line text-blue-600 text-sm sm:text-base"></i>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">Expert Team</h4>
+            <p class="text-gray-600 text-sm sm:text-base">Certified professionals with expertise in AI, data analytics, and software development.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3 sm:gap-4">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+            <i class="ri-check-line text-blue-600 text-sm sm:text-base"></i>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">Proven Results</h4>
+            <p class="text-gray-600 text-sm sm:text-base">98% client satisfaction rate with 150+ successful projects delivered.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3 sm:gap-4">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+            <i class="ri-check-line text-blue-600 text-sm sm:text-base"></i>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">Flexible Solutions</h4>
+            <p class="text-gray-600 text-sm sm:text-base">Both enterprise-grade and cost-effective options to fit your budget.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3 sm:gap-4">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+            <i class="ri-check-line text-blue-600 text-sm sm:text-base"></i>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">Ongoing Support</h4>
+            <p class="text-gray-600 text-sm sm:text-base">24/7 technical support and continuous optimization.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Ready to Work With Us?</h3>
+      <p class="text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base">
+        Join 150+ businesses that have transformed their operations with Vizan's solutions.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+        <a href="contact.html" class="bg-primary hover:bg-blue-600 text-white px-6 sm:px-8 py-3 !rounded-button font-semibold transition-all inline-block text-center text-sm sm:text-base">
+          Contact Us
+        </a>
+        <a href="index.html#portfolio-showcase" class="bg-transparent border-2 border-primary text-primary hover:bg-blue-50 px-6 sm:px-8 py-3 !rounded-button font-semibold transition-all inline-block text-center text-sm sm:text-base">
+          View Our Work
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 sm:mb-16">
+      <div>
+        <div class="flex items-center mb-6">
+          <img src="assets/logo/vizanLogo_1-removebg-preview.png" alt="Logo" width="100" height="50" class="me-2 align-middle">
+        </div>
+        <p class="text-gray-300 mb-6 leading-relaxed text-sm sm:text-base">
+          Transforming businesses through innovative IT solutions, data analytics, and comprehensive training programs.
+        </p>
+        <div class="flex space-x-4">
+          <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-linkedin-fill text-lg"></i>
+          </div>
+          <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-twitter-fill text-lg"></i>
+          </div>
+          <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-facebook-fill text-lg"></i>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-lg sm:text-xl font-bold mb-6">Services</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Software Development</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Data Analytics</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">BI Consulting</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Website Services</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Training Programs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg sm:text-xl font-bold mb-6">Company</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">About Us</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Our Team</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Careers</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Case Studies</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg sm:text-xl font-bold mb-6">Get In Touch</h4>
+        <div class="space-y-4 mb-6">
+          <div class="flex items-center gap-3">
+            <i class="ri-mail-line text-primary"></i>
+            <span class="text-gray-300 text-sm sm:text-base">info@vizantech.com</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="ri-phone-line text-primary"></i>
+            <span class="text-gray-300 text-sm sm:text-base">+91 7788001161</span>
+          </div>
+        </div>
+        <button class="bg-primary hover:bg-blue-600 text-white px-6 py-3 !rounded-button font-semibold transition-all w-full whitespace-nowrap text-sm sm:text-base">
+          Start Your Project
+        </button>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-gray-400 text-sm sm:text-base">© 2025 Vizan Technologies. All rights reserved.</p>
+        <div class="flex space-x-4 sm:space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile Menu Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const closeMenuButton = document.getElementById('close-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuOverlay = document.getElementById('menu-overlay');
+  
+  function openMobileMenu() {
+    mobileMenu.classList.add('active');
+    menuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  
+  mobileMenuButton.addEventListener('click', openMobileMenu);
+  closeMenuButton.addEventListener('click', closeMobileMenu);
+  menuOverlay.addEventListener('click', closeMobileMenu);
+  
+  // Close menu when clicking on menu links
+  const menuLinks = mobileMenu.querySelectorAll('a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+});
+</script>
+
+</body>
+</html>
